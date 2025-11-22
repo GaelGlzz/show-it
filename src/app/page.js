@@ -216,7 +216,7 @@ export default function Home() {
         </div>
       </header>
         <button
-          className="px-4 py-2 rounded-full text-white hover:animate-pop cursor-pointer absolute bottom-4 right-4"
+          className="px-4 py-2 rounded-full text-white hover:animate-pop cursor-pointer fixed bottom-4 right-4 z-50"
           style={{ backgroundColor: '#4D7C8A' }}
           onClick={() => setIsModalOpen(true)}
         >
