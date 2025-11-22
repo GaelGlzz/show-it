@@ -599,23 +599,26 @@ export default function Home() {
             );
           })
           .map((post, index) => (
-          <div 
+            <div 
             key={post.id} 
-            className={`shadow rounded-lg p-3 hover:animate-pop cursor-pointer flex flex-col`}
+            className="shadow rounded-lg p-3 hover:animate-pop cursor-pointer flex flex-col relative"
             style={{
               backgroundColor: '#FFF8F0',
+              minHeight: "260px", // asegura espacio para el título
             }}
             onClick={() => {
               setSelectedPost(post);
               setIsDetailModalOpen(true);
             }}
           >
+          
+            {/* Imagen o placeholder */}
             {post.imageUrl && post.imageUrl.trim() !== "" ? (
               <div className="w-full flex justify-center items-start">
                 <img
                   src={post.imageUrl}
                   alt={post.title || "Imagen de publicación"}
-                  className="rounded-md w-full h-auto object-contain max-h-[600px]"
+                  className="rounded-md w-full h-auto object-contain max-h-[200px]"
                   onError={(e) => {
                     console.error("Error cargando imagen:", post.imageUrl);
                     e.target.src = "https://via.placeholder.com/300";
@@ -623,12 +626,24 @@ export default function Home() {
                 />
               </div>
             ) : (
-              <div className="w-full h-40 rounded-md flex items-center justify-center" style={{ backgroundColor: '#2B2D42' }}>
+              <div 
+                className="w-full h-40 rounded-md flex items-center justify-center"
+                style={{ backgroundColor: '#2B2D42' }}
+              >
                 <span style={{ color: '#FFF8F0' }}>Sin imagen</span>
               </div>
             )}
-            <h3 className="mt-2 text-lg font-semibold" style={{ color: '#2B2D42' }}>{post.title}</h3>
+          
+            {/* TÍTULO abajo a la izquierda */}
+            <h3
+              className="absolute bottom-2 left-3 text-lg font-semibold"
+              style={{ color: '#2B2D42' }}
+            >
+              {post.title}
+            </h3>
+          
           </div>
+          
         ))}
       </section>
     </main>
